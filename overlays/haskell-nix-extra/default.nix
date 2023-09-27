@@ -62,13 +62,13 @@ in final: prev: with final; with lib; {
           rm $out/bin
           mkdir $out/bin
           ln -s ${drv}/bin/* $out/bin/
-          rm $out/bin/*${stdenv.hostPlatform.extensions.executable}
-          cp --no-preserve=timestamps --recursive ${drv}/bin/*${stdenv.hostPlatform.extensions.executable} $out/bin/
+          rm $out/bin/*${stdenv.buildPlatform.extensions.executable}
+          cp --no-preserve=timestamps --recursive ${drv}/bin/*${stdenv.buildPlatform.extensions.executable} $out/bin/
           echo "********************************************************************************"
-          echo "stdenv.hostPlatform.extensions.executable == ${stdenv.hostPlatform.extensions.executable}"
+          echo "stdenv.buildPlatform.extensions.executable == ${stdenv.buildPlatform.extensions.executable}"
           ls -lah $out/bin/
-          chmod -R +w $out/bin/*${stdenv.hostPlatform.extensions.executable}
-          ${pkgsBuildBuild.haskellBuildUtils}/bin/set-git-rev "${gitrev}" $out/bin/*${stdenv.hostPlatform.extensions.executable}
+          chmod -R +w $out/bin/*${stdenv.buildPlatform.extensions.executable}
+          ${pkgsBuildBuild.haskellBuildUtils}/bin/set-git-rev "${gitrev}" $out/bin/*${stdenv.buildPlatform.extensions.executable}
         '';
       in drv // newdrv;
 
