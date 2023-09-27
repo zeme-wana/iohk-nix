@@ -64,6 +64,8 @@ in final: prev: with final; with lib; {
           ln -s ${drv}/bin/* $out/bin/
           rm $out/bin/*${stdenv.hostPlatform.extensions.executable}
           cp --no-preserve=timestamps --recursive ${drv}/bin/*${stdenv.hostPlatform.extensions.executable} $out/bin/
+          echo "********************************************************************************"
+          ln -lah $out/bin/
           chmod -R +w $out/bin/*${stdenv.hostPlatform.extensions.executable}
           ${pkgsBuildBuild.haskellBuildUtils}/bin/set-git-rev "${gitrev}" $out/bin/*${stdenv.hostPlatform.extensions.executable}
         '';
